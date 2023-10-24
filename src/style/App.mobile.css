@@ -1,0 +1,70 @@
+@media screen and (min-width: 200px) and (max-width: 480px) {
+
+    .d-mobile {
+        visibility: visible;
+        display: inherit;
+    }
+    .d-desktop {
+        visibility: hidden;
+        display: none;
+    }
+    
+    #content_desktop_nav {
+        visibility: hidden;
+        display: none;
+    }
+    .navbar-brand {
+        visibility: visible;
+        display: inherit;
+    }
+    
+    .logo {
+        font-size: 35px;
+    }
+
+    .gambar {
+        width:95%;
+    }
+    
+    .image-poster {
+        /* cursor: pointer; */
+        width: 300px; 
+    }
+
+    .image-poster img {
+        object-fit: cover;
+        oject-position: center;
+    }
+    
+    div.scrollmenu {
+        overflow: auto;
+        /* overflow-x:scroll; */
+        white-space: nowrap;
+      }
+      
+    div.scrollmenu a {
+        /* display: inline-block; */
+        display:inline-block;
+        /* color: black; */
+        text-align: center;
+        padding: 10px;
+        /* padding-top:10px; */
+        text-decoration: none;
+
+        /* width:100%; */
+        /* gap:10px; */
+    }
+
+    .poster_img {
+        height:450px;
+    }
+
+    .justify-content-center-mobile {
+        justify-content: center;
+    }
+    
+    .text-center-mobile {
+        text-align: center;
+    }
+      
+}

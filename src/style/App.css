@@ -1,0 +1,38 @@
+.d-mobile {
+  visibility: hidden;
+  display: none;
+}
+
+.navbar-brand {
+  visibility: visible;
+  display: inherit;
+}
+
+.text-muted {
+  color: darkslategrey !important;
+  font-size: 24px;
+  display: block;
+}
+
+h1 {
+  font-size: 56px;
+}
+
+.gambar {
+  width:95%;
+}
+
+.text-primary {
+  color: black !important;
+}
+
+.image-poster {
+  /* cursor: pointer; */
+  width: 300px; 
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-weight: 400;
+}
