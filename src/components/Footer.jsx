@@ -4,7 +4,7 @@ import IconText from "./Icon_txt"
 function footer() {
   return (
     <>
-      <footer className="container pb-3 mt-10 pt-5">
+      <footer className="container pb-3 mt-10">
         <div className="row ">
           <div className="col-sm-3 pt-4 col-xs-12">
             <div className="d-flex justify-content-center-mobile">
