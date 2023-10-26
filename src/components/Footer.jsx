@@ -5,7 +5,7 @@ function footer() {
   return (
     <>
       <footer className="container pb-3 mt-10">
-        <div className="row ">
+        <div className="row pt-5">
           <div className="col-sm-3 pt-4 col-xs-12">
             <div className="d-flex justify-content-center-mobile">
               <img src="/img/icon_nav.jpg" alt="logo" />
@@ -68,7 +68,9 @@ function footer() {
             <IconText icon="/img/icon_media/yt_icon.jpg" text="Tickitz Cinema Id"/>
           </div>
         </div>
-        <p className="text-center mt-5">© 2020 Tickitz. All Rights Reserved.</p>
+        <div className="container pb-5">
+          <p className="text-center mt-3">© 2020 Tickitz. All Rights Reserved.</p>
+        </div>
       </footer>
     </>
   );

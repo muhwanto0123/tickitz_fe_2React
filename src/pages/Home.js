@@ -1,6 +1,7 @@
 import "../style/App.css";
 import "../style/App.mobile.css";
 
+
 import NavbarCompont from "../components/Navbar";
 import BookCompont from "../components/Movies_content";
 import Footer from "../components/Footer";

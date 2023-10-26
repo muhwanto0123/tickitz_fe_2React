@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+// import Login from '../pages/Login';
 
 function navbar() {
   return (
@@ -14,15 +15,18 @@ function navbar() {
             <a href="" className="navbar-brand">
               <img className="logo" src="/img/icon_nav.jpg" alt="logo" />
             </a>
-
+            <Link to={'/'}>
+              <a className="d-desktop" href="">
+                Home
+              </a>
+            </Link>
             <a className="d-desktop" href="">
-              About
-            </a>
-            <a className="d-desktop" href="">
-              ContactUs
+              List Movie
             </a>
           </div>
-          <button className="btn btn-dark px-5 d-desktop">Sign-in</button>
+          <Link to={`/register`}>
+            <button className="btn btn-dark px-5 d-desktop">Sign-up</button>
+          </Link>
           {/* <!-- end content nav desktop --> */}
 
           {/* <!-- content nav mobile --> */}
@@ -38,17 +42,21 @@ function navbar() {
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link text-center" href="#">
-                  About
-                </a>
+                <Link to={'/'}>
+                  <a className="nav-link text-center" href="#">
+                    Home
+                  </a>
+                </Link>
               </li>
               <li className="nav-item text-center">
                 <a className="nav-link" href="#">
-                  ContactUs
+                  List Movie
                 </a>
               </li>
               <li className="nav-item text-center">
-                <button className="btn btn-dark">Sign-in</button>
+                <Link to={'/register'}>
+                  <button className="btn btn-dark">Sign-in</button>
+                </Link>
               </li>
             </ul>
           </div>
