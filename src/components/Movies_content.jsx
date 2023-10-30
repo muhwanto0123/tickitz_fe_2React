@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 // import "../style/App.css";
 // import "../style/App.mobile.css";
 
-function Book(props) {
-  const { poster, title, genres } = props;
+function Movies(props) {
+  const { poster, title, genres, slug } = props;
 
   return (
    
         <div className="image-poster">
-          <Link to={`/detail/${title.toLowerCase().split(" ").join("-")}`} >
+          <Link to={`/detail/${slug}`} >
             <img className="poster_img" src={poster} width="100%" height="350px" />
           </Link>
           <h3 className="text-center mt-3 single-text"> {title} </h3>
@@ -22,7 +22,7 @@ function Book(props) {
               <span>{genres.length - 1 === key ? item : `${item}, `}</span>
             ))}
           </span>
-          <Link to={`/detail/${title.toLowerCase().split(" ").join("-")}`}>
+          <Link to={`/detail/${slug}`}>
             <div className="d-grid mt-2">
               <button className="btn btn-dark">Details</button>
             </div>
@@ -31,4 +31,4 @@ function Book(props) {
   );
 }
 
-export default Book;
+export default Movies;

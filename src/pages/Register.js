@@ -1,29 +1,59 @@
 import "../style/Auth.css";
 import "../style/Auth.mobile.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 
 function Register() {
+  const navigate = useNavigate();
   const [fullname, setFullName] = React.useState("");
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleRefister = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [sucesNotif, setSucessNotif] = React.useState(false);
+  const [errMsg, setErrMsg] = React.useState(null);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('token') && localStorage.getItem('profile')) {
+      navigate("/")
+    }
+  }, [])
+
+  const handleRegister = () => {
+    setIsLoading(true);
+    setErrMsg(null);
+
     axios
-        .post("https://tickitz-be.onrender.com/v1/auth/register", {
-            email: email,
-            password: password,
-            fullname: fullname,
-            phone_number: phoneNumber,
-        })
-        .then(() => {
-            console.log("berhasil")
-        }).catch(() => {
-            console.log("error")
-        })
+      .post("https://tickitz-be.onrender.com/gusti/auth/register", {
+        email: email,
+        password: password,
+        fullname: fullname,
+        phone_number: phoneNumber,
+      })
+      .then(() => {
+        setSucessNotif(true);
+      })
+      .catch((error) => {
+        const errFullname = error?.response?.data?.messages?.fullname?.message;
+        const errPhone_number = error?.response?.data?.messages?.phone_number?.message;
+        const errEmail = error?.response?.data?.messages?.email?.message;
+        const errPassword = error?.response?.data?.messages?.password?.message;
+
+        setSucessNotif(false);
+        setErrMsg(
+          errFullname ??
+          errPhone_number ??
+          errEmail ??
+          errPassword ??
+          "Something wrong with the app"
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -75,41 +105,48 @@ function Register() {
                 Fill your additional details
               </p>
 
-              <div className="mb-2">
-                <label className="form-label">Full Name</label>
+              {sucesNotif ? (
+                <div class="alert alert-dark" role="alert">
+                  Register Sucess Please check your email
+                </div>
+              ) : null}
+              {errMsg ? (
+                <div class="alert alert-danger" role="alert">
+                  {errMsg}
+                </div>
+              ) : null}
+
+              <div className="mb-4">
                 <input
-                  className="form-control form-control-lg"
-                  placeholder="write your full Name"
+                  className="form-control"
+                  placeholder="Full Name"
                   onChange={(event) => {
                     setFullName(event.target.value);
                   }}
                 />
               </div>
-              <div className="mb-2">
-                <label className="form-label">Phone Number</label>
+              <div className="mb-4">
                 <input
-                  className="form-control form-control-lg"
-                  placeholder="write your phone number"
+                  className="form-control"
+                  placeholder="Phone Number"
                   onChange={(event) => {
                     setPhoneNumber(event.target.value);
                   }}
                 />
               </div>
-              <div className="mb-2">
-                <label className="form-label">Email</label>
+              <div className="mb-4">
                 <input
-                  className="form-control form-control-lg"
-                  placeholder="write your email"
+                  className="form-control"
+                  placeholder="Email"
                   onChange={(event) => {
                     setEmail(event.target.value);
                   }}
                 />
               </div>
-              <div className="mb-2">
-                <label className="form-label">Password</label>
+              <div className="mb-4">
                 <input
-                  className="form-control form-control-lg"
-                  placeholder="write your password"
+                  className="form-control"
+                  placeholder="Password"
                   type="password"
                   onChange={(event) => {
                     setPassword(event.target.value);
@@ -117,10 +154,16 @@ function Register() {
                 />
               </div>
               <div className="d-grid pt-4">
-                <button className="btn btn-primary btn-lg">Sign Up</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={handleRegister}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Sign Up"}
+                </button>
               </div>
               <p className="text-center pt-4">
-                Alreadt have account ?{" "}
+                Already have account ?{" "}
                 <Link to="/login" style={{ color: "#5F2EEA" }}>
                   Sign-in
                 </Link>

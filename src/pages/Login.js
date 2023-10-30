@@ -1,10 +1,67 @@
 import "../style/Auth.css";
 import "../style/Auth.mobile.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
+import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [sucesNotif, setSucessNotif] = React.useState(false);
+  const [errMsg, setErrMsg] = React.useState(null);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('token') && localStorage.getItem('profile')) {
+      navigate("/")
+    }
+  }, [])
+
+  const handleLogin = () => {
+    setIsLoading(true);
+    setErrMsg(null);
+
+    axios
+      .post("https://tickitz-be.onrender.com/gusti/auth/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        const token = response?.data?.data?.token;
+        const profile = response?.data?.data?.result;
+
+        localStorage.setItem("token", token)
+        localStorage.setItem('profile', JSON.stringify(profile))
+        // console.log(response)
+        // console.log(token)
+        // localStorage.setItem("profile", JSON.stringify(profile))
+        // console.log(profile)
+        // localStorage.setItem = ('token', token);
+        // localStorage.setItem = ("profile", profile);
+        setSucessNotif(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000)
+      })
+      .catch((error) => {
+        const errEmail = error?.response?.data?.messages?.email?.message;
+        const errPassword = error?.response?.data?.messages?.password?.message;
+
+        setSucessNotif(false);
+        setErrMsg(
+          errEmail ??
+          errPassword ??
+          "Something wrong with the app"
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <div id="page_login" style={{ overflow: "hidden" }}>
       <div className="row">
@@ -54,22 +111,45 @@ function Login() {
                 Sign in with your data that you 
                 entered during your registration
               </p>
-              <div className="mb-3">
-                <label className="form-label">Email</label>
+
+              {sucesNotif ? (
+                <div class="alert alert-dark" role="alert">
+                  Login sucess, plese wait for redirect to our app
+                </div>
+              ) : null}
+              {errMsg ? (
+                <div class="alert alert-danger" role="alert">
+                  {errMsg}
+                </div>
+              ) : null}
+
+              <div className="mb-4">
                 <input
                   className="form-control form-control-lg"
-                  placeholder="write your email"
+                  placeholder="Email"
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">Password</label>
+              <div className="mb-4">
                 <input
                   className="form-control form-control-lg"
-                  placeholder="write your password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
                 />
               </div>
               <div className="d-grid pt-2">
-                <button className="btn btn-primary btn-lg">Sign In</button>
+                <button 
+                  className="btn btn-primary btn-lg"
+                  onClick={handleLogin}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Sign In"}
+                </button>
               </div>
               <p className="text-center pt-4">
                 Forgot your password ? {" "}

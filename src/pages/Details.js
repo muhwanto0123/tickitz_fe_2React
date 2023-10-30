@@ -1,32 +1,45 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "../style/Detail.css";
-import "../style/Detail.mobile.css"
+import "../style/Detail.mobile.css";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function Detail() {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const [detailMovie, setDetailMovie] = React.useState(null);
+  const [listCinema, setListCinema] = React.useState([]);
+  const [dateMovie, setDateMovie] = React.useState(null);
+  const [timeMovie, setTimeMovie] = React.useState(null);
+
+  const handleGetAPI = async () => {
+    try {
+      const detailMovie = await axios.get(
+        `https://tickitz-be.onrender.com/gusti/movie/detail/${slug}`
+      );
+
+      if (detailMovie.data.data.length > 0) {
+        setDetailMovie(detailMovie.data.data[0]);
+      }
+
+      const detailCinema = await axios.get(
+        `https://tickitz-be.onrender.com/gusti/movie/${slug}/cinemas`
+      );
+
+      if (detailCinema.data.data.length > 0) {
+        setListCinema(detailCinema.data.data);
+      }
+    } catch (error) {
+      console.log(`Error : ${error}`);
+    }
+  };
 
   React.useEffect(() => {
-    setTimeout(() => {
-      axios
-        .get("http://localhost:3000/api/movies.json")
-        .then((response) => {
-          if (response.status === 200) {
-            setDetailMovie(
-              response.data.find(
-                (item) => item.title.toLowerCase().split(" ").join("-") === slug
-              )
-            );
-          }
-        })
-        .catch((error) => console.log(`Error : ${error}`));
-    }, 3000);
+    handleGetAPI();
   }, []);
 
   return (
@@ -39,9 +52,9 @@ function Detail() {
 
           {detailMovie === null ? (
             <>
-              <div 
-                className="d-flex justify-content-center align-items-center mt-10 mb-2" 
-                style={{height:"100vh", flexDirection:"column"}}
+              <div
+                className="d-flex justify-content-center align-items-center mt-10 mb-2"
+                style={{ height: "100vh", flexDirection: "column" }}
               >
                 <div className="spinner-border" role="status">
                   <span className="visually-hidden">Loading..</span>
@@ -62,9 +75,13 @@ function Detail() {
                 <div className="col-md-9 col-xs-12 content-main">
                   <h1>{detailMovie.title}</h1>
                   <p className="genres">
-                  {detailMovie.genres.map((item ,key) => (
-                    <span>{detailMovie.genres.length -1 === key ? item : `${item}, `}</span>
-                  ))}
+                    {detailMovie.genres.map((item, key) => (
+                      <span>
+                        {detailMovie.genres.length - 1 === key
+                          ? item
+                          : `${item}, `}
+                      </span>
+                    ))}
                   </p>
 
                   <div className="row">
@@ -109,7 +126,7 @@ function Detail() {
                           {detailMovie.cast.map((item, key) => (
                             <span>
                               {detailMovie.cast.length - 1 === key
-                                ? item 
+                                ? item
                                 : `${item}, `}
                             </span>
                           ))}
@@ -133,6 +150,137 @@ function Detail() {
             </section>
           ) : null}
         </header>
+        {/* start of cinemas */}
+        <section className="container mt-5" id="cinemas">
+          <h2 className="text-center" style={{ fontSize: "24px" }}>
+            Show Times and Ticket
+          </h2>
+          <div className="d-flex gap-3 justify-content-center mt-3">
+            <div style={{ width: "260px" }}>
+              <input
+                type="date"
+                className="form-control"
+                onChange={(e) => setDateMovie(e.target.value)}
+              />
+            </div>
+            <select
+              class="form-select form-select-sm"
+              onChange={(e) => setTimeMovie(e.target.value)}
+              style={{ width: "260px" }}
+            >
+              <option selected>Select time</option>
+              <option value="10:00">10:00 WIB</option>
+              <option value="13:00">13:00 WIB</option>
+              <option value="16:00">16:00 WIB</option>
+              <option value="19:00">19:00 WIB</option>
+            </select>
+          </div>
+          <div className="row mt-5">
+            {listCinema.map((item) => (
+              <div className="col col-md-4">
+                <div className="card_cinemas">
+                  {/* head content */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                      gap: "25px",
+                      padding: "30px 30px 0px 30px",
+                    }}
+                  >
+                    <img
+                      src={item.logo}
+                      width="105px"
+                      // height="50px"
+                      style={{ objectFit: "contain" }}
+                      alt={item.name}
+                    />
+                    <div>
+                      <h4>{item.name}</h4>
+                      <p
+                        style={{
+                          fontSize: "12px",
+                          color: "grey",
+                          margin: 0,
+                        }}
+                      >
+                        {item.address}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* buttom content */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      gap: "15px",
+                      padding: "0px 30px 30px 30px",
+                    }}
+                  >
+                    {item.movieStart.map((nestedItem) => (
+                      <p style={{ color: "#4E4B66", fontSize: "13px" }}>
+                        {nestedItem} WIB
+                      </p>
+                    ))}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      padding: "0px 30px 0px 30px",
+                    }}
+                  >
+                    <p style={{ fontSize: "16px", color: "grey" }}>Price</p>
+                    <p
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "bold",
+                        color: "black",
+                      }}
+                    >
+                      Rp {item.priceDisplay}/Seat
+                    </p>
+                  </div>
+
+                  <div
+                    className="d-grid"
+                    style={{ padding: "0px 30px 30px 30px" }}
+                  >
+                    <button
+                      className={
+                        dateMovie && timeMovie
+                          ? "btn btn-primary"
+                          : "btn btn-secondary"
+                      }
+                      onClick={() => {
+                        if(dateMovie && timeMovie)
+                          navigate(`/choose-seat/${slug}`,{
+                              state: {
+                                dateMovie,
+                                timeMovie,
+                                cinemaId: item.id,
+                                movieTitle: detailMovie.title,
+                                priceDisplay: item.priceDisplay,
+                                price:item.price,
+                                cinemaName: item.name,
+                                cinemaLogo: item.logo,
+                              },
+                          })
+                      }}
+                      disabled={!dateMovie || !timeMovie}
+                    >
+                      Book Now
+                    </button>
+                  </div>
+                  {/* end content */}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        {/* end of cinemas */}
       </div>
       <Footer />
     </>

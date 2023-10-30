@@ -1,9 +1,8 @@
 import "../style/App.css";
 import "../style/App.mobile.css";
 
-
 import NavbarCompont from "../components/Navbar";
-import BookCompont from "../components/Movies_content";
+import MovieCompont from "../components/Movies_content";
 import Footer from "../components/Footer";
 
 import React from "react";
@@ -13,27 +12,42 @@ function Home() {
   const date = new Date();
   const month = date.toLocaleString("default", { month: "short" });
 
-  const [result, setResult] = React.useState([]);
+  const [resultNowShowing, setResultNowShowing] = React.useState([]);
+  const [resultUpcoming, setResultUpcoming] = React.useState([]);
   const [selectMonth, setSelectMonth] = React.useState(
     month.toLocaleLowerCase()
   );
 
+  // Lifecycle
+  const handleGetResponse = async () => {
+    try {
+      const nowShowing = await axios.get(
+        "https://tickitz-be.onrender.com/gusti/movie/now-showing"
+      )
+      
+      if (nowShowing.status === 200) {
+        setResultNowShowing(nowShowing.data.data);
+      }
+
+      const upComing = await axios.get(
+        "https://tickitz-be.onrender.com/gusti/movie/upcoming"
+      )
+
+      if (upComing.status === 200) {
+        setResultUpcoming(upComing.data.data);
+      }
+    } catch (error) {
+      console.log(`Error : ${error}`)
+    }
+  };
+
   React.useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/movies.json")
-      .then((response) => {
-        console.log(`Sucess : ${response}`);
-        if (response.status === 200) {
-          setResult(response.data);
-        }
-      })
-      .catch((error) => console.log(`Error : ${error}`));
+    handleGetResponse();
   }, []);
 
   return (
     <div id="homePage">
       <header>
-
         <NavbarCompont />
 
         {/* // <!-- conten first page --> */}
@@ -59,24 +73,22 @@ function Home() {
       <section>
         <div className="container py-5 pt-5">
           <div className="d-flex justify-content-between">
-            <h3 className="text-primary">Now Reading</h3>
+            <h3 className="text-primary">Now Showing</h3>
             <a className="text-primary">View All</a>
           </div>
           <div className="scrollmenu">
             <div className="container">
               <a>
                 <div className="d-flex gap-3 justify-content-around mt-5">
-                  {result
-                    .filter((item) => item.showing)
-                    .slice(0, 5)
-                    .map((item) => (
-                      <BookCompont
-                        poster={item.poster}
-                        genres={item.genres}
-                        title={item.title}
-                        desc={item.desc}
-                      />
-                    ))}
+                  {resultNowShowing.slice(0, 5).map((item) => (
+                    <MovieCompont
+                      poster={item.poster}
+                      genres={item.genres}
+                      title={item.title}
+                      desc={item.desc}
+                      slug={item.slug}
+                    />
+                  ))}
                 </div>
               </a>
             </div>
@@ -131,16 +143,16 @@ function Home() {
             <div className="container">
               <a href="/">
                 <div className="d-flex gap-3 justify-content-around mt-5">
-                  {result
-                    .filter((item) => !item.showing)
+                  {resultUpcoming
                     .filter((item) => item.month_show === selectMonth)
                     .slice(0, 5)
                     .map((item) => (
-                      <BookCompont
+                      <MovieCompont
                         poster={item.poster}
                         genres={item.genres}
                         title={item.title}
                         desc={item.desc}
+                        slug={item.slug}
                       />
                     ))}
                 </div>
@@ -148,8 +160,7 @@ function Home() {
             </div>
           </div>
         </div>
-        {result
-          .filter((item) => !item.showing)
+        {resultUpcoming
           .filter((item) => item.month_show === selectMonth).length === 0 ? (
           <p className="text-center" style={{ fontSize: "20px" }}>
             Movie Not Found
@@ -177,15 +188,15 @@ function Home() {
             className="text-center text-center-mobile"
             style={{ color: "grey" }}
           >
-            Please join and we will provide the latest updated information <br />
+            Please join and we will provide the latest updated information{" "}
+            <br />
             via your email
           </p>
         </div>
       </section>
-      
+
       <Footer />
-      
-      </div>
+    </div>
   );
 }
 
