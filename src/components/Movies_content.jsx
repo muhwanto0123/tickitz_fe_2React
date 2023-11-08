@@ -24,7 +24,12 @@ function Movies(props) {
           </span>
           <Link to={`/detail/${slug}`}>
             <div className="d-grid mt-2">
-              <button className="btn btn-dark">Details</button>
+              <button 
+                className="btn btn-outline-primary"
+                style={{backgroundColor:"#5F2EEA", color: "#5F2EEA"}}
+              >
+                Details
+              </button>
             </div>
           </Link>
         </div>

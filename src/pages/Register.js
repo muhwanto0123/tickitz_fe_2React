@@ -158,6 +158,7 @@ function Register() {
                   className="btn btn-primary"
                   onClick={handleRegister}
                   disabled={isLoading}
+                  style={{backgroundColor: "#5F2EEA"}}
                 >
                   {isLoading ? "Loading..." : "Sign Up"}
                 </button>

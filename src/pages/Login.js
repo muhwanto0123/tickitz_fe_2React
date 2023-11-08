@@ -144,9 +144,10 @@ function Login() {
               </div>
               <div className="d-grid pt-2">
                 <button 
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-primary btn"
                   onClick={handleLogin}
                   disabled={isLoading}
+                  style={{backgroundColor:"#5F2EEA"}}
                 >
                   {isLoading ? "Loading..." : "Sign In"}
                 </button>

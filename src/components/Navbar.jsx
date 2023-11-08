@@ -36,7 +36,12 @@ function Navbar() {
             />
           ) : (
           <Link to={"/register"}>
-            <button className="btn btn-dark px-5 d-desktop">Sign up</button>
+            <button 
+              className="btn btn-primary px-5 d-desktop"
+              style={{backgroundColor:"#5F2EEA"}}
+            >
+              Sign up
+            </button>
           </Link>
           )}
 
