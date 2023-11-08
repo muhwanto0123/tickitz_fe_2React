@@ -32,7 +32,7 @@ function RowSeat({ position, selectedSeat, setSelectedSeat, bookedSeat }) {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        marginTop: "20px",
+        marginTop: "20px"
       }}
     >
       <p>{position}</p>
@@ -42,6 +42,7 @@ function RowSeat({ position, selectedSeat, setSelectedSeat, bookedSeat }) {
           display: "flex",
           width: "40%",
           justifyContent: "space-between",
+          gap:"3%"
         }}
       >
         {[...new Array(7)].map((item, key) => {
@@ -74,6 +75,7 @@ function RowSeat({ position, selectedSeat, setSelectedSeat, bookedSeat }) {
           display: "flex",
           width: "40%",
           justifyContent: "space-between",
+          gap:"3%"
         }}
       >
         {[...new Array(7)].map((item, key) => {
@@ -111,6 +113,7 @@ function RowSeatNumber() {
         display: "flex",
         justifyContent: "space-between",
         marginTop: "20px",
+        marginLeft: "10px"
       }}
     >
       <p></p>
@@ -120,6 +123,7 @@ function RowSeatNumber() {
           display: "flex",
           width: "40%",
           justifyContent: "space-between",
+          gap:"3%"
         }}
       >
         {[...new Array(7)].map((item, key) => (
@@ -139,6 +143,7 @@ function RowSeatNumber() {
           display: "flex",
           width: "40%",
           justifyContent: "space-between",
+          gap:"3%"
         }}
       >
         {[...new Array(7)].map((item, key) => {
@@ -295,7 +300,7 @@ function ChooseSeat() {
                     backgroundColor: "#fff",
                     borderRadius: "10px",
                     padding: "100px 200px 100px 200px",
-                    marginBottom: "30px",
+                    marginBottom: "30px"
                   }}
                 >
                   {/* screen */}
