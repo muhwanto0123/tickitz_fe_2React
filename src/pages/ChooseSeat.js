@@ -458,7 +458,7 @@ function ChooseSeat() {
               {/* Button checkout */}
               <div className="d-flex justify-content-between mt-3">
                 <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-dark"
                   onClick={() => {
                     navigate(-1);
                   }}
@@ -469,7 +469,7 @@ function ChooseSeat() {
                   className={
                     isLoading || selectedSeat.length === 0
                       ? "btn btn-secondary px-4"
-                      : "btn btn-primary px-4"
+                      : "btn btn-dark px-4"
                   }
                   onClick={handleCheckout}
                   disabled={isLoading || selectedSeat.length === 0}
