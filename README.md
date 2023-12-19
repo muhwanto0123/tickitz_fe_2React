@@ -73,17 +73,17 @@ npm run dev
 ## ScreenShoot Project
 | Home Page | Home Page After Login|
 | :---: | :---: |
-|![Home Page](https://i.ibb.co/85NL7kW/scrnli-12-19-2023-12-44-55-PM.png)|![Register Page](https://i.ibb.co/H79syXf/scrnli-12-19-2023-12-52-19-PM.png)|
+|![Home Page](https://i.postimg.cc/CLnJ45xC/tickitz-fe-2-react-vercel-app.png)|![Register Page](https://i.postimg.cc/qqSwTVjC/tickitz-fe-2-react-vercel-app-1.png)|
 
 
 | Register Page | Login Page |
 | :---: | :---: |
-|![My Recipe Page](https://i.ibb.co/7KvKmqY/scrnli-12-19-2023-12-46-01-PM.png)|![Bookmark Page](https://i.ibb.co/Jj5MQxc/scrnli-12-19-2023-12-47-30-PM.png)|
+|![My Recipe Page](https://i.postimg.cc/nhcrJj9B/Screenshot-2023-12-19-232753.png)|![Bookmark Page](https://i.postimg.cc/BnY6QS2y/Screenshot-2023-12-19-232818.png)|
 
 
 | Detail Movie | Booking Seat |
 | :---: | :---: |
-|![My Recipe Page](https://i.ibb.co/cYVYbTK/screencapture-tickets-web-app-vercel-app-detail-killers-of-the-flower-moon-2023-12-19-12-57-07.png)|![Bookmark Page](https://i.ibb.co/7VsQf3g/screencapture-tickets-web-app-vercel-app-chose-Seat-killers-of-the-flower-moon-2023-12-19-12-56-46.png)|
+|![My Recipe Page](https://i.postimg.cc/4dw2jSDz/tickitz-fe-2-react-vercel-app-2.png)|![Bookmark Page](https://i.postimg.cc/1zhdF60N/tickitz-fe-2-react-vercel-app-3.png)|
 
 
 
