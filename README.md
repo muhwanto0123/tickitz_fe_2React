@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+<br />
+<p align="center">
+  <div align="center">
+    <img height="40" src="https://tickets-web-app.vercel.app/img/logo/Tickitz%201.png" alt="tickitz" border="0"/>
+  </div>
+  <h3 align="center">Tickitz</h3>
+  <p align="center">
+    <a href="https://github.com/muhwanto0123/tickitz_fe_2React"><strong>Explore the web »</strong></a>
+    <br />
+  </p>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Installation](#installation)
+  - [Related Project](#related-project)
 
-In the project directory, you can run:
 
-### `npm start`
+# About The Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Tickitz is a movie web application designed for users to discover, explore and enjoy movies. With an intuitive and user-friendly interface, Tickitz offers information about all the films showing, and upcoming ones. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Tickitz provides you with film details, just click on the image of the film you want to know information about, and of course you can order the film also on the web here, but don't forget to log in first
 
-### `npm test`
+To create Tickitz, Im using cutting-edge technologies like React Js, Bootstrap, Moment, Axios, PostMan, Redux toolkit, which will provide efficient experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Built With
 
-### `npm run build`
+These are the libraries and service used for building this backend API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React Js](https://react.dev/learn)
+- [Bootstrap](https://getbootstrap.com/)
+- [Moment](https://momentjs.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [PostMan](https://www.postman.com/)
+- [Redux toolkit](https://redux-toolkit.js.org/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone this repository
 
-### `npm run eject`
+```sh
+git clone https://github.com/arsyad12/tickets_BE.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Change directory to Tickets-Web-App
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+cd Tickets-Web-App
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install all of the required modules
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
+npm install
+```
 
-## Learn More
+6. Run this command to run the server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+npm run start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Or run this command for running in development environment
 
-### Code Splitting
+```sh
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ScreenShoot Project
+| Home Page | Home Page After Login|
+| :---: | :---: |
+|![Home Page](https://i.ibb.co/85NL7kW/scrnli-12-19-2023-12-44-55-PM.png)|![Register Page](https://i.ibb.co/H79syXf/scrnli-12-19-2023-12-52-19-PM.png)|
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| Register Page | Login Page |
+| :---: | :---: |
+|![My Recipe Page](https://i.ibb.co/7KvKmqY/scrnli-12-19-2023-12-46-01-PM.png)|![Bookmark Page](https://i.ibb.co/Jj5MQxc/scrnli-12-19-2023-12-47-30-PM.png)|
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Detail Movie | Booking Seat |
+| :---: | :---: |
+|![My Recipe Page](https://i.ibb.co/cYVYbTK/screencapture-tickets-web-app-vercel-app-detail-killers-of-the-flower-moon-2023-12-19-12-57-07.png)|![Bookmark Page](https://i.ibb.co/7VsQf3g/screencapture-tickets-web-app-vercel-app-chose-Seat-killers-of-the-flower-moon-2023-12-19-12-56-46.png)|
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Demo App
 
-### `npm run build` fails to minify
+Documentation files are provided in the [Demo](https://tickitz-fe-2-react.vercel.app/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Related Project
+
+:rocket: [`Backend Tickitz`](https://github.com/muhwanto0123/Tickitz_Project)
+
+:rocket: [`Frontend Tickitz`](https://tickitz-fe-2-react.vercel.app/)
+
+:rocket: [`Demo Tickitz`](https://tickitz-fe-2-react.vercel.app/)
